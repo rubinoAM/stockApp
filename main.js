@@ -12,8 +12,8 @@ $(document).ready(()=>{
             <tr>
                 <td>${jsonData.symbol}</td>
                 <td>${jsonData.companyName}</td>
-                <td>${jsonData.iexAskPrice}</td>
-                <td>${jsonData.iexBidPrice}</td>
+                <td>${jsonData.high}</td>
+                <td>${jsonData.low}</td>
                 <td>${jsonData.change}</td>
             </tr>
         `);
