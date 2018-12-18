@@ -9,22 +9,29 @@ $(document).ready(()=>{
         console.log(event);
 
         const symbol = $('#symbol').val();
+        $('#symbol').val('');
 
-        //Endpoint: A web accessible URL that responds with data
-        const url = `https://api.iextrading.com/1.0/stock/${symbol}/quote`;
+        const symbols = symbol.split(',')
+        symbols.forEach((s)=>{
+            s = s.trim();
+            //Endpoint: A web accessible URL that responds with data
+            const url = `https://api.iextrading.com/1.0/stock/${s}/quote`;
 
-        //getJSON() takes two args: 1) Where to get JSON 2) Function to Return
-        $.getJSON(url,(jsonData)=>{
-            console.log(jsonData);
-            $('#stock-body').html(`
-                <tr>
-                    <td>${jsonData.symbol}</td>
-                    <td>${jsonData.companyName}</td>
-                    <td>${jsonData.high}</td>
-                    <td>${jsonData.low}</td>
-                    <td>${jsonData.change}</td>
-                </tr>
-            `);
+            //getJSON() takes two args: 1) Where to get JSON 2) Function to Return
+            $.getJSON(url,(jsonData)=>{
+                console.log(jsonData);
+                $('#stock-body').append(`
+                    <tr>
+                        <td>${jsonData.symbol}</td>
+                        <td>${jsonData.companyName}</td>
+                        <td>${jsonData.high}</td>
+                        <td>${jsonData.low}</td>
+                        <td>${jsonData.change}</td>
+                    </tr>
+                `);
+            });
         });
+
+        
     });
 })
