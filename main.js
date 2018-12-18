@@ -43,6 +43,6 @@ $(document).ready(()=>{
 
     $(document).on('click','#remove',function(e){
         const rowDel = e.target.parentNode.parentNode.id;
-        $("#"+rowDel).empty();
+        $("#"+rowDel).remove();
     });
 })
