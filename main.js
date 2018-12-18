@@ -24,11 +24,11 @@ $(document).ready(()=>{
                     changeClass = 'increase';
                 }
                 else{
-                    changeClass = 'decrease'
+                    changeClass = 'decrease';
                 }
-
                 $('#stock-body').append(`
-                    <tr>
+                    <tr id="${jsonData.symbol}">
+                        <td><button id="remove" class="btn btn-danger">X</button></td>
                         <td>${jsonData.symbol}</td>
                         <td>${jsonData.companyName}</td>
                         <td>${jsonData.high}</td>
@@ -36,18 +36,13 @@ $(document).ready(()=>{
                         <td id="change" class="${changeClass}">${jsonData.change}</td>
                     </tr>
                 `);
-
             });
-        });
+        });  
+        $('#stock-table').DataTable();
+    });
 
-        
+    $(document).on('click','#remove',function(e){
+        const rowDel = e.target.parentNode.parentNode.id;
+        $("#"+rowDel).empty();
     });
 })
-
-
-/*if(jsonData.change > 0){
-    $('#stock-body').append(`<td class="increase">${jsonData.change}</td>`);
-}
-else if (jsonData.change < 0){
-    $('#stock-body').append(`<td class="decrease">${jsonData.change}</td>`);
-}*/
