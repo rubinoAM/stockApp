@@ -1,1 +1,24 @@
 body{background: pink;}
+
+.increase{
+    animation:i-blink 2s infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.decrease{
+    color:white;
+    animation:d-blink 1s infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes i-blink{
+    0%{background-color:green;}
+    50%{background-color:rgb(26, 150, 26);}
+    100%{background-color:green;}
+}
+
+@keyframes d-blink{
+    0%{background-color: red;}
+    50%{background-color: rgb(172, 23, 23);}
+    100%{background-color: red;}
+}

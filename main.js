@@ -1,5 +1,4 @@
 $(document).ready(()=>{
-    //Do the damn thing!
     const stockForm = document.querySelector('.stock-form');
     console.log(stockForm);
 
@@ -20,18 +19,35 @@ $(document).ready(()=>{
             //getJSON() takes two args: 1) Where to get JSON 2) Function to Return
             $.getJSON(url,(jsonData)=>{
                 console.log(jsonData);
+                let changeClass = "";
+                if(jsonData.change > 0){
+                    changeClass = 'increase';
+                }
+                else{
+                    changeClass = 'decrease'
+                }
+
                 $('#stock-body').append(`
                     <tr>
                         <td>${jsonData.symbol}</td>
                         <td>${jsonData.companyName}</td>
                         <td>${jsonData.high}</td>
                         <td>${jsonData.low}</td>
-                        <td>${jsonData.change}</td>
+                        <td id="change" class="${changeClass}">${jsonData.change}</td>
                     </tr>
                 `);
+
             });
         });
 
         
     });
 })
+
+
+/*if(jsonData.change > 0){
+    $('#stock-body').append(`<td class="increase">${jsonData.change}</td>`);
+}
+else if (jsonData.change < 0){
+    $('#stock-body').append(`<td class="decrease">${jsonData.change}</td>`);
+}*/
